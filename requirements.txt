@@ -1,4 +1,9 @@
 fastapi
+pydantic
 uvicorn
 streamlit
-kaggle
+nltk
+textblob
+textstat
+tensorflow
+gensim
