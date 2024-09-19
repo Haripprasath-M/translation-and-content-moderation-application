@@ -5,5 +5,7 @@ streamlit
 nltk
 textblob
 textstat
+scikit-learn
 tensorflow
 gensim
+requests
