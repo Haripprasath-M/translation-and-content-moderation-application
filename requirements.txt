@@ -9,3 +9,6 @@ scikit-learn
 tensorflow
 gensim
 requests
+transformers
+torch
+SentencePiece

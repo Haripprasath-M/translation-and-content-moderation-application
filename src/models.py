@@ -3,11 +3,12 @@
 import numpy as np
 import pandas as pd
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from gensim.models import KeyedVectors
 import pickle
 from preprocessing import clean_data
+from transformers import MarianMTModel, MarianTokenizer
+import torch
 
 # Load the FastText model
 def load_fasttext_model(model_path):
@@ -26,6 +27,14 @@ def load_tokenizer(tokenizer_path):
 def load_scaler(scaler_path):
     with open(scaler_path, 'rb') as handle:
         return pickle.load(handle)
+    
+#Load Translation Model
+def load_translation_model(model_path):
+    return MarianMTModel.from_pretrained(model_path)
+
+#Load Translation tokenizer
+def load_translation_tokenizer(tokenizer_path):
+    return MarianTokenizer.from_pretrained(tokenizer_path)
 
 # Preprocess input text for prediction
 def preprocess_input_text(tokenizer, fasttext_model, text, max_length=500):
@@ -60,4 +69,13 @@ def predict_with_lstm(lstm_model, tokenizer, fasttext_model, text):
     # Convert probabilities to binary (0 or 1)
     prediction_binary = (prediction > 0.5).astype(int)
     
-    return prediction_binary[0]  # Return the first prediction result
+    return prediction_binary[0]
+
+#Translate text
+def translate_text(tokenizer, model, input_text):
+    input_ids = tokenizer.encode(input_text, return_tensors='pt')
+    with torch.no_grad():
+        output_ids = model.generate(input_ids, max_length=500)
+    
+    translated_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+    return translated_text
