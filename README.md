@@ -108,7 +108,8 @@ OneDrive link - https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84ZD
 ## Future Work
 
 - Complete Docker implementation for deployment.
-- Further optimize the machine learning models.
+- Further optimize the deep learning model.
+- Add more translation options
 
 ## Contributions
 
