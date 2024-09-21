@@ -96,7 +96,7 @@ OneDrive link - https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2YvYy84ZD
 4. Run the FastAPI backend:
 
    ```bash
-   uvicorn src.fastapi_app:app --reload
+   python src/fastapi_app.py
    ```
 
 5. Run the Streamlit frontend:
